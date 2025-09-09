@@ -1,0 +1,442 @@
+/* Základní styly pro tělo stránky formuláře */
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Kontejner pro formulář */
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+/* Styly pro popisky formulářových polí */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    text-align: left;
+}
+
+/* Styl pro povinnou hvězdičku u formulářových polí */
+.required-asterisk {
+    color: red;
+    margin-left: 3px;
+    font-weight: bold;
+}
+
+/* Styly pro textová, emailová, číselná pole a textarea */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Styl pro pole jen pro čtení */
+input[readonly] {
+    background-color: #e9ecef;
+}
+
+/* Skupina formulářových polí */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Skrytí specifických formulářových skupin */
+.hidden-form-group {
+    display: none;
+}
+
+/* Kontejner pro tlačítka */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Styly pro všechna tlačítka */
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+}
+
+/* Efekt při najetí myší na tlačítko */
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Styl pro znepřístupněné tlačítko */
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Styly pro zobrazení vybrané položky v objednávce */
+.selected-item-display {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.selected-item-display img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.selected-item-display h4 {
+    margin: 0 0 5px 0;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.selected-item-display p {
+    margin: 0;
+    color: #666;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Styly pro popover (vyskakovací okno s objednávkou) */
+.popover {
+    position: fixed;
+    top: 10px;
+    right: 30px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    display: none;
+    min-width: 250px;
+    max-width: 350px;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 80vh;
+}
+
+.popover-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.popover-total {
+    font-size: 1.5em;
+    color: #28a745;
+    font-weight: bold;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    text-align: right;
+    margin-top: auto;
+}
+
+/* Nadpis popoveru */
+.popover-header {
+    font-size: 1.5em;
+    color: #007bff;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+/* Kontejner pro tlačítka v popoveru */
+.popover-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.popover-actions button {
+    width: auto;
+    padding: 8px 12px;
+    font-size: 0.9em;
+}
+
+/* Styly pro jednotlivé položky v popoveru */
+.popover-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.popover-item-details-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.popover-item-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #333;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.popover-item-details {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0;
+}
+
+/* Styly pro tlačítko smazání položky */
+.delete-button {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+    line-height: 1;
+    align-self: flex-start;
+}
+
+.delete-button:hover {
+    color: #c82333;
+}
+
+/* Styly pro tlačítko tisku */
+.print-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.print-button:hover {
+    background-color: #218838;
+}
+
+/* Styly pro tlačítko zavření popoveru */
+.close-button-popover {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.close-button-popover:hover {
+    background-color: #c82333;
+}
+
+/* Styl pro tlačítko Zpět na nabídku */
+.back-button {
+    display: block;
+    padding: 10px 15px;
+    background-color: #6c757d;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+}
+
+/* Styl pro jméno zákazníka v popoveru */
+.popover-customer-name {
+    font-size: 1.1em;
+    color: #555;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* Styl pro zprávu o blokování pop-upů (již nepotřebné, ale ponecháno pro konzistenci) */
+.popup-blocked-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffc107;
+    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+    display: none;
+}
+
+/* Styl pro popis objednávky v popoveru */
+.popover-order-description {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dotted #ccc;
+    text-align: left;
+}
+
+/* Styly pro potvrzovací dialog */
+.confirmation-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none;
+}
+
+.confirmation-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 350px;
+    width: 90%;
+}
+
+.confirmation-content p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.confirm-button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    flex-grow: 1;
+}
+
+.confirm-button.yes {
+    background-color: #dc3545;
+    color: white;
+}
+
+.confirm-button.yes:hover {
+    background-color: #c82333;
+}
+
+.confirm-button.no {
+    background-color: #007bff;
+    color: white;
+}
+
+.confirm-button.no:hover {
+    background-color: #0056b3;
+}
+
+/* Styly pro děkovací dialog */
+.thank-you-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    display: none;
+}
+
+.thank-you-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 350px;
+    width: 90%;
+}
+
+.thank-you-content p {
+    font-size: 1.5em;
+    margin-bottom: 0;
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Styl pro dynamicky zobrazované smajlíky v dialozích */
+#dialog-emoji {
+    font-size: 1.5em;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+/* Styly pro tlačítko Objednat na stránce nabídky (special.html) */
+.order-button {
+    display: block; /* Aby zabíralo celou šířku a bylo pod textem */
+    padding: 10px 15px;
+    background-color: #007bff; /* Modrá barva */
+    color: white;
+    text-align: center;
+    text-decoration: none; /* Odstraní podtržení odkazu */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 15px; /* Mezera nad tlačítkem */
+    width: 100%; /* Zajišťuje plnou šířku uvnitř why-text */
+    margin-left: auto;
+    margin-right: auto;
+    transition: background-color 0.3s ease;
+}
+
+.order-button:hover {
+    background-color: #0056b3; /* Tmavší modrá při najetí myší */
+    color: white;
+}

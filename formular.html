@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objednávka - special.html</title>
+    <link rel="stylesheet" href="css/stylef.css">
+</head>
+<body>
+    <div id="main-content">
+        <div class="container" id="form-container">
+            <a href="specialobj.html" class="back-button">← Zpět na nabídku</a>
+            
+            <form id="myForm" action="#">
+                <h1>Objednávka <span id="current-order-display"></span> <span id="customer-name-display" class="customer-name-display"></span></h1>
+                <div class="form-group jmeno-input-group">
+                    <label for="jmeno">Jméno:<span class="required-asterisk">*</span></label>
+                    <input type="text" id="jmeno" name="jmeno" value="" required>
+                </div>
+
+                <hr>
+                <div class="selected-item-display" id="selected-item-display">
+                    <img id="selected-item-image" src="" alt="Vybrané jídlo">
+                    <h4 id="selected-item-name"></h4>
+                    <p id="selected-item-description"></p>
+                    <p id="selected-item-price"></p>
+                </div>
+
+                <div class="form-group hidden-form-group">
+                    <label for="nazev-zbozi">Název zboží:</label>
+                    <input type="text" id="nazev-zbozi" name="nazev-zbozi" value="" readonly>
+                </div>
+                <div class="form-group hidden-form-group">
+                    <label for="pevna-cena-1">Pevná cena (Kč):</label>
+                    <input type="number" id="pevna-cena-1" name="pevna-cena-1" value="120" readonly>
+                </div>
+               <div class="form-group">
+                    <label for="kusy">Počet kusů:</label>
+                    
+				<div class="quantity-input">
+                 <button type="button" class="minus-btn">-</button>
+                 <input type="text" id="kusy" name="kusy" value="1" readonly>
+ 
+                 <button type="button" class="plus-btn">+</button>
+               </div>
+					
+                </div>
+
+                <div class="form-group">
+                    <label for="polozka-poznamka">Poznámka k položce (např. bez cibule):</label>
+                    <textarea id="polozka-poznamka" name="polozka-poznamka" rows="2" placeholder="Zde můžete přidat poznámku ke konkrétní položce..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="popis-objednavky">Poznámka k objednávce:</label>
+                    <textarea id="popis-objednavky" name="popis-objednavky" rows="3" placeholder="Zde můžete přidat speciální požadavky nebo poznámky k objednávce..."></textarea>
+                </div>
+                
+                <div class="button-container">
+                    <button type="button" id="spocitat-total">Přidat do košíku</button>
+                    <button type="button" id="zobrazit-popover">Zobrazit košík</button>
+                    <a href="specialobj.html" class="back-button">← Zpět na nabídku</a>
+                </div>
+            </form>
+        </div>
+
+        <div id="myPopover" class="popover">
+            <span class="close-popover-icon" title="Zavřít košík">&times;</span> 
+            <div class="popover-header"> <h3 class="popover-title">Objednávka #<span id="popover-cislo-objednavky"></span></h3>
+            </div>
+            <p class="popover-customer-name">Jméno: <span id="popover-jmeno-zakaznika"></span></p>
+            <div id="popover-seznam-polozek" class="popover-content">
+                </div>
+            <p class="popover-total">Celkem: <span id="popover-celkova-suma">0.00 Kč</span></p>
+            <p id="popover-order-description" class="popover-order-description" style="display: none;"></p>
+            <div class="popover-actions">
+                <button class="print-button" id="print-popover-button">Objednat</button>
+                <button class="close-button-popover">Zrušit objednávku</button>
+         </div>
+			 <a href="specialobj.html" class="back-button">← Zpět na nabídku</a>
+			
+		</div>	
+     </div>
+			
+      
+
+        <div id="customDialog" class="custom-dialog">
+            <p id="dialog-message"></p>
+            <span id="dialog-emoji" class="dialog-emoji"></span> <div class="custom-dialog-actions">
+                <button id="customDialogYes" class="yes">Ano</button>
+                <button id="customDialogNo" class="no">Ne</button>
+            </div>
+        </div>
+        <div id="dialogOverlay" class="dialog-overlay"></div>
+
+        <div id="thankYouDialog" class="thankYou-dialog" style="display: none;">
+            <div class="thankYou-content">
+                <p>Děkujeme za objednávku!</p>
+            </div>
+        </div>
+
+        <div id="popupBlockedMessage" class="popup-blocked-message" style="display: none;">
+            Stránka pro tisk byla zablokována prohlížečem. Prosím, povolte vyskakovací okna pro tuto stránku.
+        </div>
+    
+
+     <script src="js/spec.js"></script>
+   <script src="js/form.js"></script>
+      <script src="js/kos.js"></script>
+    
+	
+ </body>
+</html>
+
+	
+	  
+	  

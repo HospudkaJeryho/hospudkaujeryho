@@ -1,0 +1,18 @@
+nazev
+hospudkaujeryho1
+db.dw022.nameserver.sk:5434	
+heslo
+hospudkaujeryho1/5eEDGW1j
+UTF8/Unicode
+PostgreSQL 8
+Tabulka:
+uzivatele
+zbozi
+
+
+příkazový řádek-
+C:\Users\Petr>cd C:\Stranky\14.8\server
+
+C:\Stranky\14.8\server>node server.js
+Server běží na http://localhost:3000
+Připojeno k databázi PostgreSQL.

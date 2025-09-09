@@ -1,0 +1,564 @@
+   /* Zajištění nulových okrajů pro html a body a plné pokrytí viewportu */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: sans-serif; /* Základní font */
+            background-color: #f4f4f4; /* Světle šedé pozadí */
+        }
+
+        /* Hlavní kontejner formuláře */
+        .container {
+
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 300px; /* Zmenšená maximální šířka */
+            width: 90%; /* Responzivní šířka */
+            margin: 10px auto 5px auto; /* margin-top 50px, horizontálně auto, margin-bottom 20px */
+        }
+
+        /* Styly pro zarovnání tlačítek na střed */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            align-items: center; 
+        }
+        .button-container button,
+        .button-container a.back-button {
+            width: 100%; 
+            max-width: 300px; 
+        }
+
+        /* Styly pro univerzální dialog */
+        .custom-dialog {
+            display: none; /* Skryto ve výchozím stavu */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1001; /* Nad popoverem */
+            text-align: center;
+            max-width: 300px;
+            width: 60%;
+        }
+
+        .custom-dialog p {
+		
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        /* Styl pro smajlíka v dialogu */
+        .dialog-emoji {
+            font-size: 3em; /* Větší velikost pro smajlíka */
+            margin-top: 10px;
+            display: block; /* Zajišťuje, že je na vlastním řádku */
+        }
+
+        /* Animace pro smajlíka */
+        .dialog-emoji.pulsing {
+            animation: pulse 0.5s ease-in-out forwards;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .custom-dialog-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .custom-dialog-actions button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: auto; /* Přizpůsobí se obsahu */
+        }
+
+        .custom-dialog-actions button.yes {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+
+        .custom-dialog-actions button.yes:hover {
+            background-color: #218838;
+        }
+
+        .custom-dialog-actions button.no {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+
+        .custom-dialog-actions button.no:hover {
+            background-color: #c82333;
+        }
+
+        /* Overlay pro dialog */
+        .dialog-overlay {
+            display: none; /* Skryto ve výchozím stavu */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Poloprůhledné černé pozadí */
+            z-index: 1000; /* Pod dialogem, nad ostatním */
+        }
+
+        /* Styly pro popover */
+        .popover {
+            position: fixed;
+			max-width: 300px;
+           top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+			  background-color:white;
+          
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            display: none;
+            min-width: 250px;
+            max-width: 350px;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 80vh;
+            position: fixed;
+        }
+        .popover-content {
+
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .popover-total {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+            text-align: right;
+            margin-top: auto;
+        }
+        
+        .popover-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            text-align: center;
+        }
+
+        .popover-title {
+            font-size: 20px; 
+            color: #007bff;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* Styl pro zavírací křížek v popoveru */
+        .close-popover-icon {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #888;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+        .close-popover-icon:hover {
+            color: #333;
+        }
+
+        .popover-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .popover-actions button {
+		
+            width: auto;
+			
+            padding: 8px 12px;
+            font-size: 0.9em;
+            flex-grow: 1;
+        }
+
+        .popover-item-container {
+            display: flex;
+            align-items: flex-end; /* Zarovná položky na konec příčné osy (dole) */
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .popover-item-details-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+           
+            margin-right: auto; /* Zatlačí tlačítko doprava */
+        }
+        .popover-item-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #333;
+            margin: 0;
+            line-height: 1.2;
+            white-space: nowrap; /* Zabrání zalamování textu */
+            overflow: hidden; /* Skryje přetékající obsah */
+            text-overflow: ellipsis; /* Zobrazí tři tečky (...) pro přetékající text */
+        }
+        .popover-item-details {
+            font-size: 0.9em;
+            color: #666;
+            margin: 0;
+        }
+        /* STYL PRO POZNÁMKU K POLOŽCE V POPOVERU - BARVA ZMĚNĚNA NA ŠEDOU */
+        .popover-item-note {
+            font-size: 0.8em; /* Menší font */
+            color: #888; /* Šedá barva */
+            margin-top: 2px;
+            margin-bottom: 0;
+            white-space: pre-wrap; /* Umožní zalamování a zachová mezery */
+            word-wrap: break-word; /* Zalamuje dlouhá slova */
+        }
+        /* STYL PRO POPIS ZBOŽÍ V POPOVERU - TENTO UŽIVATEL NECHCETE */
+        /* .popover-item-description {
+            font-size: 0.85em; 
+            color: #666;
+            margin-top: 2px;
+            margin-bottom: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-style: italic;
+        } */
+
+
+        .delete-button {
+		justify-content: flex-end;
+            background: none;
+            border: none;
+            color: #dc3545;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            line-height: 1;
+            transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease;
+        }
+        .delete-button:hover {
+		
+            background-color: #e0e0e0;
+            color: #333;
+            border-radius: 50%;
+        }
+
+        .print-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        .print-button:hover {
+            background-color: #218838;
+        }
+
+        .close-button-popover {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        .close-button-popover:hover {
+            background-color: #c82333;
+        }
+
+        /* Styly pro zobrazení vybrané položky */
+        .selected-item-display {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            width: 100%; 
+            box-sizing: border-box;
+        }
+        .selected-item-display img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        /* Zvětšený název položky */
+        .selected-item-display h4 {
+            margin: 5px 0;
+            color: #333;
+            font-size: 1.4em; /* Zvětšený font-size */
+            font-weight: bold;
+        }
+        /* STYL PRO CENU - ZVĚTŠENÍ A PONECHÁNÍ ČERNÉ BARVY */
+        #selected-item-price {
+            color: black; /* Ponechána černá barva textu */
+            font-size: 1.6em; /* Zvětšený font-size */
+            margin-top: 10px; /* Přidá 10px mezery nad cenou */
+        }
+        /* STYL PRO POPIS V SEKCI VYBRANÉ POLOŽKY - ZACHOVANÁ PŮVODNÍ BARVA */
+        .selected-item-description {
+            font-size: 0.46em; /* Velikost zůstává zmenšená */
+            color: #888; /* Barva vrácena na původní */
+            margin: 5px 0 0 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-style: italic;
+        }
+
+        .hidden-form-group {
+            display: none;
+        }
+        .required-asterisk {
+            color: red;
+            margin-left: 2px;
+        }
+
+        /* Styly pro vyskakovací nálepku (dočasnou zprávu) */
+        .temporary-sticker {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 20px;
+            box-shadow: none;
+            z-index: 1002;
+            font-size: 1.2em;
+            font-weight: bold;
+            background-color: #D3D3D3;/* ODSTRANĚNO ŽLUTÉ POZADÍ */
+            color: #333;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0.4s ease-out;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            padding: 10px;
+            width: fit-content;
+            box-sizing: border-box;
+        }
+
+        .temporary-sticker.active {
+            opacity: 1;
+            visibility: visible;
+            animation: stickerPopOut 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+
+        @keyframes stickerPopOut {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1); /* Zajišťuje správný konečný stav transformace */
+                opacity: 1;
+            }
+        }
+
+        /* Barvy pro různé typy nálepek */
+        .temporary-sticker.warning {
+            color: #333;
+        }
+        .temporary-sticker.error {
+            color: white;
+        }
+        .temporary-sticker.info {
+            color: inherit;
+        }
+
+        /* Styl pro zobrazení čísla objednávky na hlavní stránce */
+        #current-order-display {
+            font-size: 24px; 
+            color: #666; 
+            margin-left: 10px; 
+            font-weight: normal; 
+        }
+
+        /* Styly pro zmenšení nadpisu objednávky a čísla */
+        .container h1 {
+            font-size: 24px; 
+            margin-bottom: 15px; 
+        }
+        .container h1 #current-order-display {
+            font-size: 24px; 
+            color: #888; 
+            font-weight: normal; 
+            margin-left: 3px; 
+        }
+
+        /* Styly pro tlačítka */
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* Styl pro tlačítko Zpět na nabídku */
+        .back-button {
+            display: block;
+            padding: 10px 15px;
+            background-color: #6c757d;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+
+        /* Styl pro jméno zákazníka v popoveru */
+        .popover-customer-name {
+            font-size: 1.1em;
+            color: #555;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        /* STYL PRO POPIS OBJEDNÁVKY V POPOVERU */
+        .popover-order-description {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dotted #ccc;
+            text-align: left;
+            white-space: pre-wrap; /* Zachovává mezery a zalamuje řádky */
+            word-wrap: break-word; /* Zalamuje dlouhá slova */
+        }
+
+       /* Styl pro děkovací dialog */
+        .thankYou-dialog {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(46, 125, 50, 0.9);
+            color: white;
+            padding: 50px;
+            border-radius: 10px;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1003;
+        }
+        .thankYou-content {
+            animation: fadeIn 2s;
+        }
+        /* Styly pro formulářové prvky */
+        .form-group {
+            margin-bottom: 15px; /* Konzistentní mezera mezi skupinami */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px; /* Více místa mezi popiskem a polem */
+            font-weight: bold;
+            color: #555;
+            text-align: left;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            /* Explicitní styly pro zalamování textu v textarea */
+            white-space: pre-wrap; /* Zachovává mezery a zalamuje řádky (výchozí pro textarea) */
+            overflow-wrap: break-word; /* Zalamuje dlouhá slova (moderní alternativa k word-wrap) */
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #eee; /* Jemnější čára */
+            margin: 25px 0; /* Více vertikálního prostoru kolem čáry */
+        }
+
+        /* Styl pro vlastní tooltip (bublinu) */
+        #customTooltip {
+            position: fixed;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            z-index: 10000;
+            font-size: 1.1em;
+            max-width: 300px;
+            text-align: center;
+            pointer-events: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            line-height: 1.4;
+        }
