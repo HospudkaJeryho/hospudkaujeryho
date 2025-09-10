@@ -1,0 +1,1 @@
+Testovací soubor, který má Git vidět.
