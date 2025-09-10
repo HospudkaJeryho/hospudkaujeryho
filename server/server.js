@@ -93,3 +93,4 @@ app.listen(port, () => {
     console.log(`Server běží na http://localhost:${port}`);
     console.log('Připojeno k databázi PostgreSQL.');
 });
+// Testovací komentář
